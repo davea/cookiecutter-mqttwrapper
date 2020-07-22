@@ -1,0 +1,35 @@
+- name: Install required packages
+  pkgng:
+    state: present
+    name:
+      - py37-setuptools
+      - py37-virtualenv
+
+- name: Create code directory
+  file:
+    path: "/home/{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}/{{ cookiecutter.project_name }}"
+    state: directory
+    owner: "{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}"
+    group: "{{ '{{' }} {{ cookiecutter.config_key }}.group {{ '}}' }}"
+
+- name: Copy code files into place
+  copy:
+    src: "{{ '{{' }} item {{ '}}' }}"
+    dest: "/home/{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}/{{ cookiecutter.project_name }}/{{ '{{' }} item {{ '}}' }}"
+    owner: "{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}"
+    group: "{{ '{{' }} {{ cookiecutter.config_key }}.group {{ '}}' }}"
+  with_items:
+    - requirements.txt
+    - {{ cookiecutter.project_name }}.py
+  notify:
+    - restart {{ cookiecutter.project_name }}
+
+- name: Create/populate virtualenv
+  become_user: "{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}"
+  pip:
+    virtualenv: "/home/{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}/{{ cookiecutter.project_name }}-venv"
+    virtualenv_command: "/usr/local/bin/virtualenv"
+    virtualenv_python: "/usr/local/bin/python3.7"
+    requirements: "/home/{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}/{{ cookiecutter.project_name }}/requirements.txt"
+  notify:
+    - restart {{ cookiecutter.project_name }}

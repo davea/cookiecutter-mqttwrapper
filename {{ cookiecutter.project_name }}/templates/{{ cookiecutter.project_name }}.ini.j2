@@ -1,0 +1,11 @@
+[program:{{ cookiecutter.project_name }}]
+command=/home/{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}/{{ cookiecutter.project_name }}-venv/bin/python {{ cookiecutter.project_name }}.py
+directory=/home/{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}/{{ cookiecutter.project_name }}
+user={{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}
+autostart=true
+autorestart=true
+startsecs=5
+startretries=1000
+environment=PATH="/usr/bin:/usr/local/bin",LC_ALL="en_GB.UTF-8",LANG="en_GB.UTF-8",HOME="/home/{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}",USER="{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}"
+stderr_logfile=/var/log/supervisor/{{ cookiecutter.project_name }}.err
+stdout_logfile=/var/log/supervisor/{{ cookiecutter.project_name }}.log

@@ -1,0 +1,6 @@
+- name: Create {{ cookiecutter.project_name }} .env file
+  template:
+    src: .env.j2
+    dest: /home/{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}/{{ cookiecutter.project_name }}/.env
+  notify:
+    - restart {{ cookiecutter.project_name }}

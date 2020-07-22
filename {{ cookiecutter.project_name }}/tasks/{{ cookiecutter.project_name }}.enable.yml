@@ -1,0 +1,9 @@
+- name: Create {{ cookiecutter.project_name }} supervisor task
+  template:
+    src: {{ cookiecutter.project_name }}.ini.j2
+    dest: /usr/local/etc/supervisor.d/{{ cookiecutter.project_name }}.ini
+  notify:
+    - restart {{ cookiecutter.project_name }}
+
+- name: restart {{ cookiecutter.project_name }}
+  supervisorctl: name={{ cookiecutter.project_name }} state=present

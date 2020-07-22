@@ -1,0 +1,5 @@
+{{ cookiecutter.project_name }}:
+  broker: mqtt://mqtt
+  topics: ""
+  user: {{ cookiecutter.default_user }}
+  group: {{ cookiecutter.default_user }}

@@ -1,0 +1,8 @@
+- name: Add group for {{ cookiecutter.project_name }}
+  group:
+    name: "{{ '{{' }} {{ cookiecutter.config_key }}.group {{ '}}' }}"
+
+- name: Add user for {{ cookiecutter.project_name }}
+  user:
+    name: "{{ '{{' }} {{ cookiecutter.config_key }}.user {{ '}}' }}"
+    group: "{{ '{{' }} {{ cookiecutter.config_key }}.group {{ '}}' }}"

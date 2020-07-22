@@ -1,0 +1,19 @@
+- import_tasks: {{ cookiecutter.project_name }}.user.yml
+  tags:
+    - {{ cookiecutter.project_name }}
+    - {{ cookiecutter.project_name }}.user
+
+- import_tasks: {{ cookiecutter.project_name }}.install.yml
+  tags:
+    - {{ cookiecutter.project_name }}
+    - {{ cookiecutter.project_name }}.install
+
+- import_tasks: {{ cookiecutter.project_name }}.config.yml
+  tags:
+    - {{ cookiecutter.project_name }}
+    - {{ cookiecutter.project_name }}.config
+
+- import_tasks: {{ cookiecutter.project_name }}.enable.yml
+  tags:
+    - {{ cookiecutter.project_name }}
+    - {{ cookiecutter.project_name }}.enable

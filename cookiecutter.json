@@ -1,0 +1,5 @@
+{
+  "project_name": "mqttwidget",
+  "config_key": "{{ cookiecutter.project_name }}",
+  "default_user": "{{ cookiecutter.project_name }}"
+}
